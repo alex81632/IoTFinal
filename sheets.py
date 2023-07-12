@@ -14,7 +14,7 @@ def create_spreadsheet():
     )
 
     load_dotenv()
-    email = os.getenv("EMAIL_ADDRES")
+    email = os.getenv("EMAIL_ADDRESS")
 
     spreadsheet_id = sheet.get("spreadsheetId")
     print("Spreadsheet ID: {0}".format(spreadsheet_id))
@@ -66,8 +66,68 @@ def write_columns_names(spreadsheet_id, file_path, sheet_name="Data"):
 
 
 def write_mean(spreadsheet_id, mean, sheet_name="Mean"):
-    range_name = f"{sheet_name}!A1:B1"
+    range_name = f"{sheet_name}!A1:A1"
     values = [[str(mean)]]
+    value_input_option = "USER_ENTERED"
+    body = {"values": values}
+    result = (
+        spreadsheet_service.spreadsheets()
+        .values()
+        .update(
+            spreadsheetId=spreadsheet_id,
+            range=range_name,
+            valueInputOption=value_input_option,
+            body=body,
+        )
+        .execute()
+    )
+
+    print("{0} cells updated.".format(result.get("updatedCells")))
+
+
+def write_students_number(spreadsheet_id, number, sheet_name="Mean"):
+    range_name = f"{sheet_name}!B1:B1"
+    values = [[str(number)]]
+    value_input_option = "USER_ENTERED"
+    body = {"values": values}
+    result = (
+        spreadsheet_service.spreadsheets()
+        .values()
+        .update(
+            spreadsheetId=spreadsheet_id,
+            range=range_name,
+            valueInputOption=value_input_option,
+            body=body,
+        )
+        .execute()
+    )
+
+    print("{0} cells updated.".format(result.get("updatedCells")))
+
+
+def write_students_left(spreadsheet_id, left, sheet_name="Mean"):
+    range_name = f"{sheet_name}!C1:C1"
+    values = [[str(left)]]
+    value_input_option = "USER_ENTERED"
+    body = {"values": values}
+    result = (
+        spreadsheet_service.spreadsheets()
+        .values()
+        .update(
+            spreadsheetId=spreadsheet_id,
+            range=range_name,
+            valueInputOption=value_input_option,
+            body=body,
+        )
+        .execute()
+    )
+
+    print("{0} cells updated.".format(result.get("updatedCells")))
+
+
+def write_action(spreadsheet_id, action, sheet_name="Mean"):
+    range_name = f"{sheet_name}!D1:D1"
+    values = [[action]]
     value_input_option = "USER_ENTERED"
     body = {"values": values}
     result = (

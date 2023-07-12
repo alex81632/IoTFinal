@@ -35,10 +35,7 @@ class AttentioRecognition:
         self.predictor = dlib.shape_predictor('shape_predictor_68_face_landmarks.dat')
 
         # Inicializar a captura de vídeo na maior resolução possível
-        self.cap = cv2.VideoCapture(0, cv2.CAP_DSHOW)
-
-        self.cap.set(cv2.CAP_PROP_FRAME_WIDTH, 3840)
-        self.cap.set(cv2.CAP_PROP_FRAME_HEIGHT, 2160)
+        self.cap = cv2.VideoCapture(0)
 
         img_teste = self.cap.read()[1]
         distancia_focal = 0.5 * img_teste.shape[1] / math.tan(60 / 2 * math.pi / 180)

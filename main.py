@@ -49,7 +49,7 @@ class Game:
 
             # Transformar o fram em uma imagem do pygame
             frame = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
-            frame = pg.image.frombuffer(frame.tostring(), frame.shape[1::-1], "RGB")
+            frame = pg.image.frombuffer(frame.tobytes(), frame.shape[1::-1], "RGB")
 
             # redimensionar a imagem para o tamanho da tela
             frame = pg.transform.scale(frame, (self.screen.get_width(), self.screen.get_height()))
@@ -76,7 +76,7 @@ class Game:
                     # adicionar tempo no formato dd/mm/yyyy hh:mm:ss
                     atention.insert(0, time.strftime("%d/%m/%Y %H:%M:%S", time.localtime()))
                     pd.DataFrame([atention], columns=columns).to_csv("data.csv", index=False)
-                    data.enviar_dados(media5)
+                    data.enviar_dados(media5, len(atention), alunos - len(atention))
                 calculations.update_graf()
 
             calculations.aviso_baixa_atencao(self.screen)
