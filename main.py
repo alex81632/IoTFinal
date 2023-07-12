@@ -76,7 +76,7 @@ class Game:
                     # adicionar tempo no formato dd/mm/yyyy hh:mm:ss
                     atention.insert(0, time.strftime("%d/%m/%Y %H:%M:%S", time.localtime()))
                     pd.DataFrame([atention], columns=columns).to_csv("data.csv", index=False)
-                    data.enviar_dados(media5, len(atention), alunos - len(atention))
+                    data.enviar_dados(media5, len(atention) - 3, alunos - len(atention) + 3)
                 calculations.update_graf()
 
             calculations.aviso_baixa_atencao(self.screen)
