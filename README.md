@@ -15,7 +15,7 @@ Para utilizar o código, primerio clone este repositório:
 git clone https://github.com/alex81632/IoTFinal.git
 ```
 
-Depois disso, baixe as bibliotecas necessarias
+Depois disso, baixe as bibliotecas necessarias, esse código roda em python 3.6
 
 ```bash
 pip3 install -r requirements.txt # linux
